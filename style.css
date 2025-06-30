@@ -44,7 +44,7 @@ body.dark {
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(to right, #50c0ff, #ff8fd8);
+  background: linear-gradient(to right, #9c87c8, #e8b5ff);
   color: white;
   transition: background 0.3s ease;
 }
@@ -139,8 +139,8 @@ button[type="submit"] {
   font-size: 1rem;
   border: none;
   border-radius: 6px;
-  background: linear-gradient(to right, #50c0ff, #ff8fd8);
-  color: white;
+  background: linear-gradient(to right, #9c87c8, #e8b5ff);
+  color: #720188;
   cursor: pointer;
   transition: background 0.3s ease;
 }
