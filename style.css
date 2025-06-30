@@ -137,10 +137,11 @@ input[type="text"] {
 button[type="submit"] {
   padding: 10px 14px;
   font-size: 1rem;
+  font-weight: bold; /* This line adds bold style to the text */
   border: none;
   border-radius: 6px;
-  background: linear-gradient(to right, #9c87c8, #e8b5ff);
-  color: #720188;
+  background: linear-gradient(to right, #3b2960, #77219e);
+  color: #ffffff;
   cursor: pointer;
   transition: background 0.3s ease;
 }
