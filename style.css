@@ -18,6 +18,8 @@ body {
   align-items: center;
   min-height: 100vh;
   transition: all 0.3s ease;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 body.dark {
@@ -33,10 +35,21 @@ body.dark {
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 body.dark .chat-container {
   background: #2d2d2d;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #chat {
@@ -46,6 +59,7 @@ body.dark .chat-container {
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
 body.dark #chat {
@@ -67,6 +81,7 @@ body.dark #chat {
 #form {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 #input {
@@ -75,6 +90,7 @@ body.dark #chat {
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1em;
+  min-width: 200px;
 }
 
 button {
@@ -102,15 +118,25 @@ select {
   right: 10px;
 }
 
-footer {
-  margin-top: 30px;
+.branding {
+  margin-top: 10px;
   text-align: center;
   font-size: 0.9em;
   color: #888;
 }
 
-footer a {
+.branding a {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #chat {
+    height: 50vh;
+  }
 }
