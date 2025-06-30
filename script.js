@@ -31,7 +31,7 @@ form.onsubmit = async (e) => {
   chat.scrollTop = chat.scrollHeight;
 };
 
-function resetChat() {
-  chat.innerHTML = "";
+window.resetChat = function() {
+  document.getElementById("chat").innerHTML = "";
   count = 0;
-}
+};
