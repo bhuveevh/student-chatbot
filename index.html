@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vH-AI</title>
+  <title>Student AI Chatbot</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,10 @@
     <button id="toggleTheme">🌗</button>
   </div>
   <div class="chat-container">
-    <h1>vH-AI</h1>
+    <div class="header-row">
+      <h1>vH-AI</h1>
+      <button onclick="resetChat()" id="resetBtn">˖ New</button>
+    </div>
     <select id="model">
       <option value="deepseek/deepseek-chat:free">🧠 DeepSeek Chat</option>
   <option value="meta-llama/llama-3-8b-instruct">🦙 LLaMA 3 (Meta)</option>
@@ -24,14 +27,11 @@
       <input type="text" id="input" placeholder="Ask a question..." required />
       <button type="submit">Send</button>
     </form>
-    <button onclick="resetChat()" id="resetBtn">♻️ New Chat</button>
-  </div>
-  <footer>
-    <p>
+    <div class="branding">
       Developed by <a href="https://vacancyhai.online" target="_blank">VACANCYHAI.ONLINE</a> |
       Inspired by USERS
-    </p>
-  </footer>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
