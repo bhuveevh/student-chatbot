@@ -44,7 +44,7 @@ body.dark {
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  background: linear-gradient(to right, #9c87c8, #e8b5ff);
+  background: linear-gradient(to right, #3b2960, #77219e);
   color: white;
   transition: background 0.3s ease;
 }
