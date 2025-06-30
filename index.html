@@ -1,34 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student AI Chatbot</title>
+  <title>vH-Ai | VACANCYHAI.ONLINE</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="chat-container">
     <div class="header-row">
-      <h1>vH-AI</h1>
+      <h1 class="chat-title">💬 vH-Ai Chat</h1>
       <div class="header-actions">
-        <button onclick="resetChat()" id="resetBtn">+ New</button>
+        <button onclick="resetChat()" id="resetBtn">♻️</button>
         <button id="toggleTheme">🌗</button>
       </div>
     </div>
+
     <select id="model">
-      <option value="deepseek/deepseek-chat:free">🧠 DeepSeek Chat</option>
-  <option value="meta-llama/llama-3-8b-instruct">🦙 LLaMA 3 (Meta)</option>
-      <option value="mistralai/mixtral-8x7b-instruct">Mistral (Fast & Free)</option>
-      <option value="meta-llama/llama-3-8b-instruct">LLaMA 3</option>
-      <option value="anthropic/claude-3-sonnet">Claude 3 Sonnet</option>
+      <option value="mistralai/mixtral-8x7b-instruct">Mixtral 8x7B (Mistral)</option>
+      <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
+      <option value="meta-llama/llama-3-8b-instruct">LLaMA 3 (Meta)</option>
     </select>
-    <div id="chat"></div>
+
+    <div id="chat">
+      <div class="msg ai">
+        <div class="label">👤 vH-Ai</div>
+        vH-Ai aapka swagat karta hai VACANCYHAI.ONLINE website par.
+      </div>
+    </div>
+
     <form id="form">
       <input type="text" id="input" placeholder="Ask a question..." required />
       <button type="submit">Send</button>
     </form>
+
     <div class="branding">
-      Developed by <a href="https://vacancyhai.online" target="_blank">VACANCYHAI.ONLINE</a> |
-      Inspired by USERS
+      Developed by <a href="https://vacancyhai.online" target="_blank">VACANCYHAI.ONLINE</a> | Inspired by USERS
     </div>
   </div>
   <script src="script.js"></script>
