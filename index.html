@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,13 +6,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="theme-toggle">
-    <button id="toggleTheme">🌗</button>
-  </div>
   <div class="chat-container">
     <div class="header-row">
-      <h1>vH-AI</h1>
-      <button onclick="resetChat()" id="resetBtn">˖ New</button>
+      <h1>💬 Student AI Chatbot</h1>
+      <div class="header-actions">
+        <button onclick="resetChat()" id="resetBtn">♻️ New Chat</button>
+        <button id="toggleTheme">🌗</button>
+      </div>
     </div>
     <select id="model">
       <option value="deepseek/deepseek-chat:free">🧠 DeepSeek Chat</option>
