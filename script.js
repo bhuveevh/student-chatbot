@@ -26,12 +26,21 @@ form.onsubmit = async (e) => {
       model: modelSelect.value
     })
   });
-  const data = await res.json();
-  chat.innerHTML += `<div class="msg ai">${data.reply}</div>`;
+
+  try {
+    const data = await res.json();
+    chat.innerHTML += `<div class="msg ai">${data.reply}</div>`;
+  } catch (err) {
+    chat.innerHTML += `<div class="msg ai">❌ Server error: Invalid JSON response.</div>`;
+  }
   chat.scrollTop = chat.scrollHeight;
 };
 
 window.resetChat = function() {
   document.getElementById("chat").innerHTML = "";
   count = 0;
+};
+
+document.getElementById("toggleTheme").onclick = () => {
+  document.body.classList.toggle("dark");
 };
