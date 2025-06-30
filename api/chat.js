@@ -19,9 +19,18 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model,
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 1000,       // Limit to avoid truncation
-        temperature: 0.7,
+        messages: [
+          {
+            role: "system",
+            content: "You are vH-Ai, a helpful educational assistant created by VACANCYHAI.ONLINE for students. Always reply in complete sentences within 200 words. If the user asks your name, reply 'Mera naam vH-Ai hai, main VacancyHai.Online ke students ke liye banaya gaya ek chatbot hoon.'"
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        max_tokens: 1000,
+        temperature: 0.7
       }),
     });
 
