@@ -1,43 +1,27 @@
-:root {
-  --bg-light: #f0f4ff;
-  --bg-dark: #202123;
-  --text-light: #000;
-  --text-dark: #fff;
-  --primary-color: #6a5acd;
-  --secondary-color: #ff69b4;
-  --user-bg: #d6eaff;
-  --ai-bg: #fbe2ff;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg-light);
-  color: var(--text-light);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #111;
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  transition: all 0.3s ease;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body.dark {
-  background: var(--bg-dark);
-  color: var(--text-dark);
+  background-color: #1e1e1e;
+  color: #eee;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
   width: 100%;
-  max-width: 800px;
-  padding: 8px;
+  max-width: 600px;
+  height: 100vh;
+  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -45,127 +29,116 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .chat-title {
   font-size: 1.2rem;
   margin: 0;
-  line-height: 40px;
 }
 
 .header-actions button {
-  height: 40px;
-  font-size: 0.9em;
-  padding: 0 10px;
+  font-size: 1rem;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-#model {
-  margin-bottom: 4px;
-  padding: 8px;
-  font-size: 0.9em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+select {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 1rem;
 }
 
 #chat {
-  flex: 1;
+  flex-grow: 1;
   overflow-y: auto;
-  background: #e0eaff;
-  border-radius: 6px;
-  padding: 6px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: #aaa transparent;
-}
-
-#chat::-webkit-scrollbar {
-  width: 4px;
-}
-
-#chat::-webkit-scrollbar-thumb {
-  background-color: #aaa;
-  border-radius: 4px;
+  gap: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
 }
 
 body.dark #chat {
-  background: #343541;
+  background: #2a2a2a;
+  border-color: #444;
 }
 
 .msg {
+  padding: 10px;
+  border-radius: 10px;
   max-width: 80%;
-  padding: 8px 12px;
-  border-radius: 16px;
   line-height: 1.4;
-  font-size: 0.9em;
   word-wrap: break-word;
 }
 
-.user {
+.msg.user {
+  background: #daf2ff;
   align-self: flex-end;
-  background-color: var(--user-bg);
-  color: var(--primary-color);
-  border-bottom-right-radius: 0;
+  text-align: right;
 }
 
-.ai {
+.msg.ai {
+  background: #f0f0f0;
   align-self: flex-start;
-  background-color: var(--ai-bg);
-  color: var(--secondary-color);
-  border-bottom-left-radius: 0;
 }
 
-#form {
-  display: flex;
-  gap: 6px;
-  margin-top: 6px;
+body.dark .msg.user {
+  background: #244f66;
+  color: #fff;
 }
 
-#input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 0.95em;
+body.dark .msg.ai {
+  background: #444;
 }
 
-button {
-  padding: 10px;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.label {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 5px;
   font-weight: bold;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .branding {
-  margin-top: 4px;
+  margin-top: 10px;
   text-align: center;
-  font-size: 0.75em;
-  color: #888;
+  font-size: 0.85rem;
 }
 
 .branding a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: bold;
+  color: #0066cc;
 }
 
-@media (max-width: 400px) {
-  .chat-title {
-    font-size: 1rem;
-    line-height: 36px;
+body.dark .branding a {
+  color: #80bfff;
+}
+
+@media (max-width: 350px) {
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .header-actions button {
-    height: 36px;
-    font-size: 0.75em;
-    padding: 0 8px;
-  }
-  #input, button {
-    font-size: 0.85em;
+  .header-actions button, .chat-title {
+    font-size: 0.9rem;
   }
 }
