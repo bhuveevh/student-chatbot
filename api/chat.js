@@ -1,37 +1,39 @@
-let count = 0;
-const MAX = 10;
-const form = document.getElementById("form");
-const chat = document.getElementById("chat");
-const input = document.getElementById("input");
-const modelSelect = document.getElementById("model");
+export default async function handler(req, res) {
+  try {
+    const { model, message } = req.body;
 
-form.onsubmit = async (e) => {
-  e.preventDefault();
-  if (count >= MAX) {
-    chat.innerHTML += `<div class="msg"><b>⚠️ Limit reached. Start new chat.</b></div>`;
-    return;
+    if (!process.env.OPENROUTER_KEY) {
+      return res.status(500).json({ reply: "❌ Server error: Missing OpenRouter API key." });
+    }
+
+    if (!message || !model) {
+      return res.status(400).json({ reply: "❌ Missing message or model." });
+    }
+
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + process.env.OPENROUTER_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: [{ role: "user", content: message }],
+        max_tokens: 300
+      })
+    });
+
+    // Check if the response is not ok
+    if (!response.ok) {
+      const errorText = await response.text(); // get text response for debugging
+      return res.status(500).json({ reply: `❌ OpenRouter error: ${errorText}` });
+    }
+
+    const result = await response.json();
+
+    const reply = result.choices?.[0]?.message?.content || "❌ No reply from model.";
+    return res.status(200).json({ reply });
+  } catch (error) {
+    return res.status(500).json({ reply: `❌ Internal Server Error: ${error.message}` });
   }
-
-  const msg = input.value.trim();
-  if (!msg) return;
-  chat.innerHTML += `<div class="msg user">${msg}</div>`;
-  input.value = "";
-  count++;
-
-  const res = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      message: msg,
-      model: modelSelect.value
-    })
-  });
-  const data = await res.json();
-  chat.innerHTML += `<div class="msg ai">${data.reply}</div>`;
-  chat.scrollTop = chat.scrollHeight;
-};
-
-function resetChat() {
-  chat.innerHTML = "";
-  count = 0;
 }
