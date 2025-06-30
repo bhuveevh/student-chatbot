@@ -8,7 +8,7 @@ const modelSelect = document.getElementById("model");
 form.onsubmit = async (e) => {
   e.preventDefault();
   if (count >= MAX) {
-    chat.innerHTML += `<div class="msg"><b>⚠️ Limit reached. Start new chat.</b></div>`;
+    chat.innerHTML += `<div class="msg ai">⚠️ Limit reached. Start new chat.</div>`;
     return;
   }
 
@@ -17,6 +17,11 @@ form.onsubmit = async (e) => {
   chat.innerHTML += `<div class="msg user">${msg}</div>`;
   input.value = "";
   count++;
+
+  const loading = document.createElement("div");
+  loading.className = "msg ai";
+  loading.textContent = "Typing...";
+  chat.appendChild(loading);
 
   const res = await fetch("/api/chat", {
     method: "POST",
@@ -29,15 +34,27 @@ form.onsubmit = async (e) => {
 
   try {
     const data = await res.json();
-    chat.innerHTML += `<div class="msg ai">${data.reply}</div>`;
+    loading.remove();
+    await typeText(data.reply);
   } catch (err) {
-    chat.innerHTML += `<div class="msg ai">❌ Server error: Invalid JSON response.</div>`;
+    loading.textContent = "❌ Server error: Invalid JSON response.";
   }
   chat.scrollTop = chat.scrollHeight;
 };
 
+async function typeText(text) {
+  const bubble = document.createElement("div");
+  bubble.className = "msg ai";
+  chat.appendChild(bubble);
+  for (let i = 0; i < text.length; i++) {
+    bubble.textContent += text[i];
+    await new Promise(res => setTimeout(res, 15));
+    chat.scrollTop = chat.scrollHeight;
+  }
+}
+
 window.resetChat = function() {
-  document.getElementById("chat").innerHTML = "";
+  chat.innerHTML = "";
   count = 0;
 };
 
